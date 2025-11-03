@@ -1,8 +1,8 @@
 //-----------------------------------------------------------------------
 // Server Connection
 //-----------------------------------------------------------------------
-let socket = io();  // For local testing
-//let socket = io('https://your-app-name.onrender.com'); // For Render deployment
+//let socket = io();  // For local testing
+let socket = io('https://real-time-browser-app5.onrender.com'); // For Render deployment
 
 //-----------------------------------------------------------------------
 // Element Retrieval
