@@ -374,7 +374,7 @@ function startQrScanner(targetInput) {
     currentPasswordInput = targetInput;
     qrScannerModal.classList.remove('hidden');
     if (!html5QrCode) {
-        html5QrCode = new html5QrCode('qr-reader');
+        html5QrCode = new Html5Qrcode('qr-reader');
     }
     const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
     html5QrCode.start(
