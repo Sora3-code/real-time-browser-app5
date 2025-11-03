@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Earth treasure</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body style="display: grid; place-items: center; text-align: center;">
 
@@ -34,9 +35,8 @@
     </div>
 
     <div id="login-form" class="hidden">
-        <h2 id="initial-login-title" class="hidden">Input password Please.</h2>
-        <h2 id="intermission-title">next Item Get pass.</h2>
         <input type="password" id="password-input" placeholder="password">
+        <button id="scan-qr-intermission" class="qr-scan-button" type="button">QRスキャンで入力</button>
         <button id="login-button">login</button>
     </div>
 
@@ -56,9 +56,9 @@
 
     <div id="custom-alert" class="custom-alert-overlay hidden">
         <div class="custom-alert-box">
-            <p id="custom-alert-message">Σ(ﾟДﾟ) (ﾟдﾟ)!!<br><br>You are lucky!!!<br><br>You are matching!!!<br><br>v(^^)vv(^^)vv(^^)vv(^^)v</p>
             <div id="alert-password-form">
                 <input type="password" id="alert-password-input" placeholder="password">
+                <button id="scan-qr-alert" class="qr-scan-button" type="button">QRスキャンで入力</button>
                 <button id="alert-login-button">Next</button>
             </div>
         </div>
@@ -76,6 +76,14 @@
             <input type="tel" id="school-tel" placeholder="schoolTEL" autocomplete="off">
             <textarea id="user-dream" placeholder="YourDream" rows="3" autocomplete="off"></textarea>
             <button id="submit-user-info">thanks.We wish you happiness (^^)</button>
+        </div>
+    </div>
+
+    <div id="qr-scanner-modal" class="custom-alert-overlay hidden">
+        <div class="qr-scanner-box">
+            <h3>QRコードをスキャンしてください</h3>
+            <div id="qr-reader" style="width: 300px; height: 300px; margin: auto;"></div>
+            <button id="qr-scanner-close">閉じる</button>
         </div>
     </div>
 

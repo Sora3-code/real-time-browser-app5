@@ -52,6 +52,13 @@ const schoolTelInput = document.getElementById('school-tel');
 const userDreamInput = document.getElementById('user-dream');
 const submitUserInfoButton = document.getElementById('submit-user-info');
 
+//QR code elements
+const scanQrIntermissionButton = document.getElementById('scan-qr-intermission');
+const scanQrAlertButton = document.getElementById('scan-qr-alert');
+const qrScannerModal = document.getElementById('qr-scanner-modal');
+const qrReaderElement = document.getElementById('qr-reader');
+const qrScannerCloseButton = document.getElementById('qr-scanner-close');
+
 //delete modals
 const resetMyModalsButton = document.getElementById('reset-my-modals-button');
 //-----------------------------------------------------------------------
@@ -60,6 +67,8 @@ const resetMyModalsButton = document.getElementById('reset-my-modals-button');
 let loggedInUser = null;
 let allModals = [];
 let myTakenModals = [];
+let html5QrCode = null;
+let currentPasswordInput = null;
 
 //-----------------------------------------------------------------------
 // Event Listeners
@@ -188,6 +197,18 @@ submitUserInfoButton.addEventListener('click', () => {
     alert('ご入力ありがとうございました！次のアイテムを取得できます。');
 });
 
+// --- QR Scanner Actions --- //
+scanQrIntermissionButton.addEventListener('click', () => {
+    startQrScanner(passwordInput);
+});
+
+scanQrAlertButton.addEventListener('click', () => {
+    startQrScanner(alertPasswordInput);
+});
+
+qrScannerCloseButton.addEventListener('click', () => {
+    stopQrScanner();
+});
 
 //-----------------------------------------------------------------------
 // Socket.IO Event Handlers
@@ -348,3 +369,42 @@ function showIntermissionPasswordForm() {
     passwordInput.focus();
 }
 
+// --- QR Scanner functions --- //
+function startQrScanner(targetInput) {
+    currentPasswordInput = targetInput;
+    qrScannerModal.classList.remove('hidden');
+    if (!html5QrCode) {
+        html5QrCode = new html5QrCode('qr-reader');
+    }
+    const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
+    html5QrCode.start(
+        { facingMode: 'environment' },
+        qrConfig,
+        (decodeText, decodeResult) => {
+            console.log(`QRコードスキャン成功: ${decodeText}`);
+            if (currentPasswordInput) {
+                currentPasswordInput.value = decodeText;
+            }
+            stopQrScanner();
+        },
+        (errorMessage) => {
+            console.warn(`QRスキャン中: ${errorMessage}`);
+        }
+    ).catch((err) => {
+        console.error('QRスキャナの起動に失敗しました。', err);
+        alert("カメラ起動に失敗しました。Webカメラへのアクセスを許可してください。");
+        stopQrScanner();
+    });
+}
+
+function stopQrScanner() {
+    if (html5QrCode && html5QrCode.isScanning) {
+        html5QrCode.stop().then(() => {
+            console.log('QRスキャナを停止しました。');
+        }).catch((err) => {
+            console.error('QRスキャナの停止に失敗しました。', err);
+        });
+    }
+    qrScannerModal.classList.add('hidden');
+    currentPasswordInput = null;
+}

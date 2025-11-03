@@ -515,3 +515,51 @@ body.game-background {
     background-position: center;
     background-attachment: fixed;
 }
+
+/* --- QRスキャナー --- */
+.qr-scan-button {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+
+.qr-scan-button:hover {
+    background-color: #e67e22;
+}
+
+/* --- スキャナーモーダルのボックス --- */
+.qr-scanner-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    max-width: 400px;
+    width: 90%;
+}
+
+.qr-scanner-box h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#qr-scanner-close {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#qr-scanner-close:hover {
+    background-color: #626f70;
+}
