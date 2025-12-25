@@ -1,6 +1,8 @@
 //-----------------------------------------------------------------------
 // Setup
 //-----------------------------------------------------------------------
+require('dotenv').config();
+
 const fs = require('fs');
 const express = require('express');
 const http = require('http');
@@ -13,8 +15,8 @@ const io = new Server(server);
 //-----------------------------------------------------------------------
 // Game Data & Passwords
 //-----------------------------------------------------------------------
-const MAIN_INTERMISSION_PASSWORD = 'pleasure';
-const ALERT_PASSWORD = 'happiness';
+const MAIN_INTERMISSION_PASSWORD = process.env.MAIN_INTERMISSION_PASSWORD;
+const ALERT_PASSWORD = process.env.ALERT_PASSWORD;
 
 let modals = [
     { id: 0, image: 'images/IMG_2178.jpeg', text: '---- Donald Trump ----<br>the Earth is mankind\'s oldest best friend', takenBy: null, isImportant: true},
