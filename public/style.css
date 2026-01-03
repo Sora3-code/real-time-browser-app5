@@ -1,0 +1,565 @@
+/* --- スプラッシュスクリーン(起動画面) --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeOutAndHide 3s ease-out 6.5s 1 forwards;
+}
+
+#splash-text {
+    font-size: 4em;
+    color: #2c3e50;
+    opacity: 0;
+    animation: fadeInText 3s ease-in 0.5s 1 forwards;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOutAndHide {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* --- スタートボタンのスタイル --- */
+#start-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1900;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/999D58CF-3FEB-431C-9FAF-18D3C0292D63.jpeg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInButton 1s ease-in 5s 1 forwards;
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#start-container h1 {
+    color: black;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+#start-button {
+    padding: 20px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#start-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f4f7f6; /* 全体の背景色を少し変更 */
+    color: #333; /* 文字色を調整 */
+}
+
+.hidden {
+    display: none !important; /* !important を追加して確実に非表示にする */
+}
+
+h1 {
+    color: #2c3e50; /* h1の文字色 */
+}
+
+/* --- 認証コンテナのスタイル --- */
+#auth-container {
+    position: relative;
+    z-index: 1950;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* 角を少し丸く */
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 影を追加 */
+    margin-top: 200px;
+    margin-bottom: 30px;
+}
+
+#auth-container h2 {
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+#auth-container input {
+    width: calc(100% - 24px); /* パディング分を考慮 */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+#auth-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #3498db; /* 青系のボタン */
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+}
+
+#auth-container button:hover {
+    background-color: #2980b9;
+}
+
+#auth-container p {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #7f8c8d;
+}
+
+#auth-container p a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+#auth-container p a:hover {
+    text-decoration: underline;
+}
+
+/* --- 既存のログインフォーム (ゲーム内進行用) --- */
+#login-form {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    max-width: 400px;
+    width: 90%;
+}
+
+#login-form h2 {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+#login-form input[type="password"] {
+    padding: 10px;
+    width: calc(100% - 22px);
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+#login-form button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-form button:hover {
+    background-color: #4cae4c;
+}
+
+/* --- 初期パスワードフォーム(中央表示用) --- */
+#login-form.initial-gate-mode {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1960;
+    margin-bottom: 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    max-width: 450px;
+}
+
+/* --- ゲームエリア --- */
+#game-area {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #b2dfdb; /* 少し明るい色 */
+    border-radius: 10px;
+    background-color: #e0f2f1;
+    max-width: 600px;
+    width: 90%;
+}
+
+#get-item-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #26a69a; /* 緑がかった青 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+#get-item-button:hover {
+    background-color: #00897b;
+}
+
+#get-item-button:disabled {
+    background-color: #b0bec5; /* 無効時の色 */
+    cursor: not-allowed;
+}
+
+#remaining-count {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #004d40;
+}
+
+/* --- 取得済みアイテム表示 --- */
+#my-items {
+    border: 1px solid #4db6ac;
+    padding: 15px;
+    border-radius: 10px;
+    width: 95%;
+    /*max-width: 1600px;*/
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+.my-items-header {
+    display: flex;
+    justify-content: center; /* タイトルを中央に */
+    align-items: center;
+    margin-bottom: 20px;
+}
+.my-items-header h2 {
+    margin: 0;
+    color: #00695c;
+    font-size: 1.6em;
+}
+
+#reset-my-modals-button {
+    margin-top: 30px;
+    background-color: #e74c3c;
+}
+
+#back-to-top-button {
+    padding: 10px 18px;
+    cursor: pointer;
+    background-color: #78909c; /* グレー系のボタン */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px; /* 上の枠との間に隙間 */
+    transition: background-color 0.3s ease;
+}
+#back-to-top-button:hover {
+    background-color: #546e7a;
+}
+
+@media (max-width: 1200px) {
+    .item-card {
+        width: calc((100% - 40px) / 3);
+    }
+}
+@media (max-width: 768px) {
+    .item-card {
+        width: calc((100% - 20px) / 2);
+    }
+}
+@media (max-width: 600px) {
+    .item-card {
+        width: 100%;
+    }
+    #my-items {
+        padding: 10px;
+    }
+}
+.items-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* カード間の間隔を広げる */
+    margin-top: 15px;
+    width: 100%;
+}
+.item-card {
+    width: calc((100% - 80px) / 5);
+    min-width: 180px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column; /* 画像とテキストを縦並びに */
+    align-items: center;
+    gap: 10px;
+    background-color: #fafafa;
+    width: 100%; /* 親要素の幅に合わせる */
+    max-width: 350px; /* カードの最大幅 */
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+.item-card:focus {
+    outline: 2px solid #3498db; /* フォーカス時のアウトライン */
+    transform: scale(1.02); /* 少し拡大 */
+}
+.item-card img {
+    max-width: 100%; /* カードの幅に合わせる */
+    height: auto; /* 高さを自動調整 */
+    max-height: 200px; /* 最大高さを設定 */
+    object-fit: contain; /* アスペクト比を保ちつつ収める */
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.item-card p {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* --- カスタムアラート --- */
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75); /* 背景をより暗く */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.custom-alert-box {
+    background-color: white;
+    padding: 50px; /* パディングを増やす */
+    border-radius: 20px; /* 角を丸く */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    font-size: 1.8em; /* 文字を大きく */
+    color: #c0392b; /* 強調色 */
+    max-width: 500px;
+    width: 90%;
+}
+.custom-alert-box button {
+    margin-top: 30px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #e74c3c; /* 赤系のボタン */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.custom-alert-box button:hover {
+    background-color: #c0392b;
+}
+
+#alert-password-form input[type="password"] {
+    padding: 10px;
+    width: calc(100% - 22px);
+    margin-top: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+
+/* --- ユーザー情報入力フォーム --- */
+#user-info-container {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #fff8e1;
+    padding: 30px;
+    border: 2px solid #f39c12; /* オレンジ系の枠 */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 550px;
+}
+
+#user-info-container h2 {
+    color: #d35400; /* h2の色 */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+#user-info-container p {
+    color: #6d4c41;
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.user-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 入力欄間の間隔 */
+    width: 100%;
+}
+.user-info-box input, .user-info-box textarea {
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.user-info-box textarea {
+    resize: vertical; /* 垂直方向にリサイズ可能 */
+    min-height: 80px;
+}
+.user-info-box button {
+    margin-top: 20px;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #27ae60; /* 緑系のボタン */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.user-info-box button:hover {
+    background-color: #229954;
+}
+
+/* --- レスポンシブ調整 --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    #auth-container, #game-area, #my-items, #user-info-container, .custom-alert-box {
+        padding: 20px;
+        width: 100%;
+        max-width: unset; /* 最大幅を解除 */
+    }
+    .custom-alert-box {
+        font-size: 1.2em;
+    }
+    .item-card {
+        flex-direction: column;
+        align-items: center;
+    }
+    .item-card img {
+        max-width: 150px;
+    }
+}
+
+/* --- 認証画面用の背景 --- */
+body.auth-background {
+    background-image: url('/images/XGKQ8229.JPEG');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* --- ゲーム画面用の背景 --- */
+body.game-background {
+    background-image: url('/images/IMG_0557.JPG');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* --- QRスキャナー --- */
+.qr-scan-button {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+
+.qr-scan-button:hover {
+    background-color: #e67e22;
+}
+
+/* --- スキャナーモーダルのボックス --- */
+.qr-scanner-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    max-width: 400px;
+    width: 90%;
+}
+
+.qr-scanner-box h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#qr-scanner-close {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#qr-scanner-close:hover {
+    background-color: #626f70;
+}

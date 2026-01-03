@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Earth treasure</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body style="display: grid; place-items: center; text-align: center;">
+
+    <div id="splash-screen">
+        <h1 id="splash-text">Earth Room (#^^#)</h1>
+    </div>
+
+    <div id="start-container" class="hidden">
+        <h1>Earth treasure(*^^)v</h1>
+        <button id="start-button">ゲームスタート</button>
+    </div>
+
+    <div id="auth-container" class="hidden">
+        <h2>ようこそ！</h2>
+        <div id="register-form" class="hidden">
+            <input type="text" id="register-username" placeholder="名前 (ID)" autocomplete="off">
+            <input type="password" id="register-password" placeholder="パスワード">
+            <button id="register-button">登録する</button>
+            <p>既にアカウントをお持ちですか？ <a href="#" id="show-login">ログイン</a></p>
+        </div>
+        <div id="login-form-main">
+            <input type="text" id="login-username" placeholder="名前 (ID)" autocomplete="off">
+            <input type="password" id="login-password" placeholder="パスワード">
+            <button id="login-button-main">ログイン</button>
+            <p>初めてですか？ <a href="#" id="show-register">登録する</a></p>
+        </div>
+    </div>
+
+    <div id="login-form" class="hidden">
+        <h2 id="initial-login-title" class="hidden">Input password Please.</h2>
+        <h2 id="intermission-title">next Item Get pass.</h2>
+        <input type="password" id="password-input" placeholder="password">
+        <button id="scan-qr-intermission" class="qr-scan-button" type="button">QRスキャンで入力</button>
+        <button id="login-button">login</button>
+    </div>
+
+    <div id="game-area" class="hidden">
+        <div id="remaining-count">残り: ...個</div>
+        <button id="get-item-button">アイテムを取得</button>
+    </div>
+
+    <div id="my-items" class="hidden">
+        <div class="my-items-header">
+            <h2>Your Get Items.</h2>
+        </div>
+    </div>
+    <button id="back-to-top-button" class="hidden">to TOP</button>
+
+    <button id="reset-my-modals-button">Reset My Items.</button>
+
+    <div id="custom-alert" class="custom-alert-overlay hidden">
+        <div class="custom-alert-box">
+            <div id="alert-password-form">
+                <input type="password" id="alert-password-input" placeholder="password">
+                <button id="scan-qr-alert" class="qr-scan-button" type="button">QRスキャンで入力</button>
+                <button id="alert-login-button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="user-info-container" class="hidden">
+        <h2>☆★☆ Congratulations ☆★☆</h2>
+        <p>重要アイテム取得、おめでとうございます！<br>記念に情報を入力してください。</p>
+        <div class="user-info-box">
+            <input type="text" id="treasure-name" placeholder="treasureName" autocomplete="off">
+            <input type="text" id="user-name" placeholder="name" autocomplete="off">
+            <input type="text" id="user-address" placeholder="address" autocomplete="off">
+            <input type="number" id="user-age" placeholder="age" autocomplete="off">
+            <input type="text" id="school-name" placeholder="schoolName" autocomplete="off">
+            <input type="tel" id="school-tel" placeholder="schoolTEL" autocomplete="off">
+            <textarea id="user-dream" placeholder="YourDream" rows="3" autocomplete="off"></textarea>
+            <button id="submit-user-info">thanks.We wish you happiness (^^)</button>
+        </div>
+    </div>
+
+    <div id="qr-scanner-modal" class="custom-alert-overlay hidden">
+        <div class="qr-scanner-box">
+            <h3>QRコードをスキャンしてください</h3>
+            <div id="qr-reader" style="width: 300px; height: 300px; margin: auto;"></div>
+            <button id="qr-scanner-close">閉じる</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
